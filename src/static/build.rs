@@ -58,18 +58,18 @@ fn main() {
     }
 
     // OpenCL support
-    #[cfg(feature = "opencl")]
-    let _ = Command::new("futhark")
-        .arg("opencl")
-        .arg("--library")
-        .arg("./lib/a.fut")
-        .output()
-        .expect("failed to execute process");
-    #[cfg(feature = "opencl")]
-    let bindings = bindgen::Builder::default()
-        .header("./lib/a.h")
-        .generate()
-        .expect("Unable to generate bindings");
+    // #[cfg(all(feature = "opencl", not(target_os = "macos")))]
+    // let _ = Command::new("futhark")
+    //     .arg("opencl")
+    //     .arg("--library")
+    //     .arg("./lib/a.fut")
+    //     .output()
+    //     .expect("failed to execute process");
+    // #[cfg(all(feature = "opencl", not(target_os="macos")))]
+    // let bindings = bindgen::Builder::default()
+    //     .header("./lib/a.h")
+    //     .generate()
+    //     .expect("Unable to generate bindings");
     #[cfg(feature = "opencl")]
     {
         #[cfg(not(target_os = "macos"))]
